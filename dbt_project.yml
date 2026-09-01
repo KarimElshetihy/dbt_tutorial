@@ -34,9 +34,9 @@ models:
     # Config indicated by + and applies to all files under models/example/
     example:
       +materialized: view
-      +schema: sch_demo_example # This will create a schema called "schema_demo_sch_demo_example" in your target database, as the default is "target.schema_custom.schema".
+      +schema: sch_demo_example 
 
 
     dvdrental_sample_data:
       +materialized: table # This will create a table in your target database for all components under this model, as the default is "view".
-      +schema: sch_demo_dvdrental # This will create a schema called "schema_demo_sch_demo_dvdrental" in your target database, as the default is "target.schema_custom.schema".
+      +schema: sch_demo_dvdrental 
