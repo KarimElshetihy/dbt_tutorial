@@ -1,3 +1,5 @@
+{{ config(materialized='table') }}
+
 with src_actors as (
 
     select * from {{ source('dvdrental_sample_data', 'actor') }}

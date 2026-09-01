@@ -38,5 +38,5 @@ models:
 
 
     dvdrental_sample_data:
-      +materialized: table # This will create a table in your target database for all components under this model, as the default is "view".
+      +materialized: view
       +schema: sch_demo_dvdrental 
