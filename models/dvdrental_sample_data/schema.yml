@@ -1,0 +1,896 @@
+version: 1
+
+sources:
+  - name: dvdrental_sample_data
+    description: "Sample data source for dbt project."
+    database: db_demo
+    schema: sch_dvdrental
+    loader: sample_loader
+
+    tables:
+      - name: actor
+        description: "Table containing actor information."
+        # columns:
+        #   - name: actor_id
+        #     description: "Unique identifier for the actor."
+        #   - name: first_name
+        #     description: "First name of the actor."
+        #   - name: last_name
+        #     description: "Last name of the actor."
+        #   - name: last_update
+        #     description: "Timestamp of the last update to the actor record."
+
+
+      - name: address
+        description: "Table containing address information."
+        columns:
+          - name: address_id
+            description: "Unique identifier for the address."
+          - name: address
+            description: "The street address."
+          - name: district
+            description: "The district where the address is located."
+          - name: city_id
+            description: "Identifier for the city where the address is located."
+          - name: postal_code
+            description: "The postal code for the address."
+          - name: phone
+            description: "The phone number for the address."
+          - name: last_update
+            description: "Timestamp of the last update to the address record."
+
+      - name: category
+        description: "Table containing category information."
+
+      - name: city
+        description: "Table containing city information."
+
+      - name: country
+        description: "Table containing country information."
+
+      - name: customer
+        description: "Table containing customer information."
+
+      - name: film
+        description: "Table containing film information."
+
+      - name: film_actor
+        description: "Table containing film actor information."
+
+      - name: film_category
+        description: "Table containing film category information."
+
+      - name: inventory
+        description: "Table containing inventory information."
+
+      - name: language
+        description: "Table containing language information."
+
+      - name: payment
+        description: "Table containing payment information."
+
+      - name: rental
+        description: "Table containing rental information."
+
+      - name: staff
+        description: "Table containing staff information."
+        
+      - name: store
+        description: "Table containing store information."
+
+
+# sources:
+#   - name: <string> # REQUIRED: Logical name of the source in dbt.
+#                    # Used in SQL as: {{ source('source_name', 'table_name') }}
+#                    # Example: name: salesforce
+
+#     description: <markdown_string> # OPTIONAL: Documentation describing the source.
+#                                    # Can contain Markdown.
+#                                    # Useful for explaining where the data comes from,
+#                                    # who owns it, or what system it represents.
+
+#     database: <database_name> # OPTIONAL: Physical database where the source lives.
+#                               # Example: database: raw_database
+#                               # Useful when the source is in a different database
+#                               # from your dbt target database.
+
+#     schema: <schema_name> # OPTIONAL: Physical schema containing the source tables.
+#                           # Example: schema: raw_salesforce
+
+#     loader: <string> # OPTIONAL: Name of the system/process that loads the source.
+#                      # Documentation metadata only; it does NOT load the data.
+#                      # Example: loader: Fivetran
+
+
+#     config: # SOURCE-LEVEL CONFIGURATION
+#             # Requires dbt v1.1+.
+#             # Settings here apply to the source and can generally be inherited
+#             # by its source tables unless overridden at table level.
+
+#       <source_config>: <config_value> # Other source-level configuration options.
+
+#       loaded_at_field: <column_name> # Defines the timestamp column used to determine
+#                                      # when source data was loaded.
+#                                      # Example: loaded_at_field: _loaded_at
+#                                      #
+#                                      # dbt uses this column for source freshness checks.
+
+#       freshness: # Defines how fresh the source data is expected to be.
+#                  # Used with loaded_at_field to detect stale source data.
+
+#         warn_after:
+#           count: <positive_integer> # Number of time units allowed before WARNING.
+#                                     # Example: count: 12
+
+#           period: minute | hour | day # Unit for warn_after.
+#                                       # Example: period: hour
+#                                       # Means: warn if data is older than 12 hours.
+
+#         error_after:
+#           count: <positive_integer> # Number of time units allowed before ERROR.
+#                                     # Example: count: 24
+
+#           period: minute | hour | day # Unit for error_after.
+#                                       # Example: period: hour
+#                                       # Means: error if data is older than 24 hours.
+
+#         filter: <where-condition> # OPTIONAL: SQL condition used to filter rows
+#                                   # when calculating freshness.
+#                                   # Useful when only certain records should be
+#                                   # considered for freshness.
+#                                   #
+#                                   # Example:
+#                                   # filter: "status = 'active'"
+
+
+#       meta: {<dictionary>} # OPTIONAL: Custom metadata you want to attach to the source.
+#                            # dbt itself doesn't give this arbitrary metadata
+#                            # a specific meaning.
+#                            #
+#                            # Useful for ownership, business domains, PII flags,
+#                            # data steward information, etc.
+#                            #
+#                            # Example:
+#                            # meta:
+#                            #   owner: data-engineering
+#                            #   domain: sales
+
+
+#       tags: [<string>] # OPTIONAL: Labels attached to the source.
+#                        # Useful for selecting/grouping resources when running dbt.
+#                        #
+#                        # Example:
+#                        # tags: [finance, daily]
+#                        #
+#                        # You can then select resources using:
+#                        # dbt run --select tag:finance
+#                        #
+#                        # Tags can also be defined at table/column level.
+
+
+#     overrides: <string> # DEPRECATED in dbt v1.10.
+#                         # Previously used to override source configuration.
+#                         # Avoid using this in new projects.
+
+
+#     quoting: # Controls whether dbt quotes identifiers when generating SQL
+#              # for this source.
+
+#       database: true | false # Whether the database name should be quoted.
+
+#       schema: true | false # Whether the schema name should be quoted.
+
+#       identifier: true | false # Whether the source table identifier should be quoted.
+#                                #
+#                                # Useful when your database is case-sensitive
+#                                # or when identifiers contain special characters.
+
+
+#     tables: # LIST OF TABLES BELONGING TO THIS SOURCE.
+
+#       - name: <string> # REQUIRED: Logical name of the source table.
+#                        # Used in SQL as:
+#                        # {{ source('source_name', 'table_name') }}
+#                        #
+#                        # Example:
+#                        # - name: customers
+
+#         description: <markdown_string> # OPTIONAL: Documentation describing
+#                                        # what this source table contains.
+
+#         identifier: <table_name> # OPTIONAL: Physical table name in the database.
+#                                  # Useful when the dbt source name differs
+#                                  # from the actual database table name.
+#                                  #
+#                                  # Example:
+#                                  # name: customers
+#                                  # identifier: customer_master
+
+
+#         data_tests: # Tests applied to the SOURCE TABLE.
+#                     # Used to validate properties of the source table.
+
+#           - <test> # Example:
+#                    # - unique
+#                    # - not_null
+#                    # - relationships
+#                    # - accepted_values
+
+#           - ... # Declare additional table-level tests.
+
+
+#         config: # TABLE-LEVEL CONFIGURATION.
+#                 # Settings here apply specifically to this source table.
+
+#           loaded_at_field: <column_name> # Timestamp column used for freshness
+#                                          # checking this specific source table.
+#                                          #
+#                                          # Can override the source-level setting.
+
+#           meta: {<dictionary>} # Custom metadata specific to this table.
+#                                #
+#                                # Example:
+#                                # meta:
+#                                #   owner: finance
+#                                #   criticality: high
+
+#           tags: [<string>] # Tags specific to this table.
+#                            #
+#                            # Example:
+#                            # tags: [finance, daily]
+#                            #
+#                            # Useful for selecting this particular table:
+#                            # dbt run --select tag:finance
+
+#           freshness: # Freshness rules specific to this table.
+#                      # Can override source-level freshness settings.
+
+#             warn_after:
+#               count: <positive_integer> # Threshold before warning.
+
+#               period: minute | hour | day # Unit for the warning threshold.
+
+#             error_after:
+#               count: <positive_integer> # Threshold before error.
+
+#               period: minute | hour | day # Unit for the error threshold.
+
+#             filter: <where-condition> # Optional SQL filter used when checking
+#                                       # freshness for this table.
+
+
+#         quoting: # TABLE-LEVEL quoting configuration.
+#                  # Can override source-level quoting settings.
+
+#           database: true | false # Quote the database identifier.
+
+#           schema: true | false # Quote the schema identifier.
+
+#           identifier: true | false # Quote the physical table identifier.
+
+
+#         external: {<dictionary>} # OPTIONAL: Metadata/configuration for an external table.
+#                                  # Used for sources that reference external tables/files
+#                                  # rather than normal database tables.
+#                                  #
+#                                  # Exact properties depend on your adapter/database.
+
+
+#         columns: # LIST OF COLUMNS IN THIS SOURCE TABLE.
+#                  # Mainly used to document and test individual columns.
+
+#           - name: <column_name> # REQUIRED: Column name in the source table.
+
+#             description: <markdown_string> # Documentation for the column.
+#                                            # Example:
+#                                            # "Unique identifier for the customer."
+
+#             quote: true | false # Controls whether the column identifier is quoted
+#                                 # when referenced/generated by dbt.
+#                                 #
+#                                 # Useful for case-sensitive or unusual column names.
+
+#             data_tests: # TESTS APPLIED TO THIS COLUMN.
+#                         # Commonly used for data quality checks.
+
+#               - <test> # Example:
+#                        # - unique
+#                        # - not_null
+#                        # - accepted_values
+
+#               - ... # Declare additional column-level tests.
+
+
+#             config: # COLUMN-LEVEL CONFIGURATION.
+
+#               meta: {<dictionary>} # Custom metadata for this column.
+#                                    #
+#                                    # Example:
+#                                    # meta:
+#                                    #   contains_pii: true
+#                                    #   business_definition: "Customer email"
+
+#               tags: [<string>] # Tags specific to this column.
+#                                #
+#                                # Example:
+#                                # tags: [pii, sensitive]
+#                                #
+#                                # Useful for organizing/selecting columns
+#                                # or integrating with custom tooling.
+
+
+#           - name: ... # Declare additional columns.
+
+
+#       - name: ... # Declare additional source tables.
+
+
+#   - name: ... # Declare additional sources.
+
+
+# sources:
+
+#   # ============================================================
+#   # SOURCE
+#   # ============================================================
+
+#   - name: salesforce
+#     # REQUIRED
+#     # Logical name used by dbt.
+#     # SQL usage:
+#     #   {{ source('salesforce', 'customers') }}
+#     #
+#     # Example:
+#     # name: salesforce
+
+
+#     description: |
+#       Salesforce production data loaded into the warehouse.
+#       Contains customer, account, and opportunity data.
+#     # OPTIONAL
+#     # Documentation for the source.
+#     #
+#     # Example:
+#     # description: "Salesforce production data"
+
+
+#     database: raw
+#     # OPTIONAL
+#     # Physical database where the source exists.
+#     #
+#     # Example:
+#     # database: raw
+
+
+#     schema: salesforce
+#     # OPTIONAL
+#     # Physical schema containing the source tables.
+#     #
+#     # Example:
+#     # schema: salesforce
+
+
+#     loader: fivetran
+#     # OPTIONAL
+#     # Identifies the tool/process loading the data.
+#     # This is documentation/metadata; dbt does not perform the loading.
+#     #
+#     # Example:
+#     # loader: fivetran
+
+
+#     # ============================================================
+#     # SOURCE CONFIG
+#     # ============================================================
+
+#     config:
+
+#       loaded_at_field: _fivetran_synced
+#       # Timestamp column dbt uses to determine when data was loaded.
+#       #
+#       # Example:
+#       # loaded_at_field: _fivetran_synced
+
+
+#       freshness:
+#         # Defines how old the source data is allowed to be.
+
+#         warn_after:
+#           count: 12
+#           period: hour
+#           # WARNING if the source hasn't received data for 12 hours.
+#           #
+#           # Example:
+#           # warn_after:
+#           #   count: 12
+#           #   period: hour
+
+
+#         error_after:
+#           count: 24
+#           period: hour
+#           # ERROR if the source hasn't received data for 24 hours.
+#           #
+#           # Example:
+#           # error_after:
+#           #   count: 24
+#           #   period: hour
+
+
+#         filter: "is_deleted = false"
+#         # Optional SQL condition.
+#         # Only rows matching this condition are considered
+#         # when calculating freshness.
+#         #
+#         # Example:
+#         # filter: "is_deleted = false"
+
+
+#       meta:
+#         owner: data-engineering
+#         domain: sales
+#         criticality: high
+#       # Custom metadata defined by YOUR organization.
+#       # dbt doesn't impose meaning on these fields.
+#       #
+#       # Example:
+#       # meta:
+#       #   owner: data-engineering
+#       #   domain: sales
+#       #   criticality: high
+
+
+#       tags:
+#         - sales
+#         - production
+#         - daily
+#       # Labels used to categorize/select resources.
+#       #
+#       # Example:
+#       # tags: [sales, production, daily]
+#       #
+#       # Then:
+#       # dbt run --select tag:sales
+
+
+#     # ============================================================
+#     # OVERRIDES
+#     # ============================================================
+
+#     overrides: something
+#     # DEPRECATED in dbt v1.10.
+#     # Don't use this for new projects.
+#     #
+#     # Example:
+#     # overrides: legacy_config
+
+
+#     # ============================================================
+#     # QUOTING
+#     # ============================================================
+
+#     quoting:
+
+#       database: false
+#       # Whether dbt should quote the database name.
+#       #
+#       # false might generate:
+#       # raw.salesforce.customers
+#       #
+#       # true might generate:
+#       # "raw".salesforce.customers
+
+
+#       schema: false
+#       # Whether dbt should quote the schema name.
+#       #
+#       # Example:
+#       # schema: false
+
+
+#       identifier: true
+#       # Whether dbt should quote the physical table name.
+#       #
+#       # Example:
+#       # identifier: true
+#       #
+#       # Useful for unusual/case-sensitive identifiers.
+
+
+#     # ============================================================
+#     # SOURCE TABLES
+#     # ============================================================
+
+#     tables:
+
+#       - name: customers
+#         # REQUIRED
+#         # Logical name of the source table.
+#         #
+#         # SQL usage:
+#         # {{ source('salesforce', 'customers') }}
+#         #
+#         # Example:
+#         # name: customers
+
+
+#         description: |
+#           Salesforce customer records.
+#           One row represents one customer.
+#         # Documentation for the source table.
+#         #
+#         # Example:
+#         # description: "Salesforce customer records"
+
+
+#         identifier: Customer
+#         # OPTIONAL
+#         # Physical table name in the database.
+#         #
+#         # Here:
+#         # dbt name = customers
+#         # Physical table = Customer
+#         #
+#         # SQL:
+#         # {{ source('salesforce', 'customers') }}
+#         #
+#         # resolves to something like:
+#         # raw.salesforce.Customer
+
+
+#         # ========================================================
+#         # TABLE TESTS
+#         # ========================================================
+
+#         data_tests:
+
+#           - unique:
+#               column_name: id
+
+#           - not_null:
+#               column_name: id
+
+#         # Tests applied to the SOURCE TABLE.
+#         #
+#         # Examples:
+#         # - unique
+#         # - not_null
+#         # - relationships
+#         # - accepted_values
+#         #
+#         # These are used to validate data quality.
+
+
+#         # ========================================================
+#         # TABLE CONFIG
+#         # ========================================================
+
+#         config:
+
+#           loaded_at_field: _fivetran_synced
+#           # Timestamp column used for freshness of THIS table.
+#           #
+#           # Can override the source-level loaded_at_field.
+#           #
+#           # Example:
+#           # loaded_at_field: _fivetran_synced
+
+
+#           meta:
+#             owner: crm-team
+#             pii: true
+#           # Custom metadata for THIS table.
+#           #
+#           # Example:
+#           # meta:
+#           #   owner: crm-team
+#           #   pii: true
+
+
+#           tags:
+#             - customer
+#             - pii
+#           # Tags specifically applied to THIS table.
+#           #
+#           # Example:
+#           # tags: [customer, pii]
+#           #
+#           # Can be used for selection:
+#           # dbt run --select tag:customer
+
+
+#           freshness:
+
+#             warn_after:
+#               count: 6
+#               period: hour
+#               # Warn if this table is more than 6 hours old.
+
+
+#             error_after:
+#               count: 12
+#               period: hour
+#               # Error if this table is more than 12 hours old.
+
+
+#             filter: "is_deleted = false"
+#             # Only consider non-deleted records for freshness.
+
+
+#         # ========================================================
+#         # TABLE QUOTING
+#         # ========================================================
+
+#         quoting:
+
+#           database: false
+#           # Don't quote the database identifier.
+
+
+#           schema: false
+#           # Don't quote the schema identifier.
+
+
+#           identifier: true
+#           # Quote the physical table identifier.
+#           #
+#           # Useful for tables such as:
+#           # "Customer"
+#           # "Sales Order"
+#           # "order"
+
+
+#         # ========================================================
+#         # EXTERNAL TABLE
+#         # ========================================================
+
+#         external:
+#           location: "s3://company-data/customers/"
+#           file_format: parquet
+#         # OPTIONAL
+#         # Metadata/configuration for an external table.
+#         #
+#         # Exact properties depend on your warehouse/adapter.
+#         #
+#         # Example:
+#         # external:
+#         #   location: "s3://company-data/customers/"
+#         #   file_format: parquet
+
+
+#         # ========================================================
+#         # COLUMNS
+#         # ========================================================
+
+#         columns:
+
+#           - name: id
+#             # REQUIRED
+#             # Name of the column in the source table.
+#             #
+#             # Example:
+#             # name: id
+
+
+#             description: "Unique identifier for the customer."
+#             # Documentation describing the column.
+#             #
+#             # Example:
+#             # description: "Unique identifier for the customer."
+
+
+#             quote: false
+#             # Whether the column identifier should be quoted.
+#             #
+#             # Example:
+#             # quote: false
+#             #
+#             # Useful when column names are case-sensitive or
+#             # contain special characters.
+
+
+#             data_tests:
+
+#               - unique
+#               - not_null
+
+#             # Tests applied specifically to THIS COLUMN.
+#             #
+#             # Example:
+#             # data_tests:
+#             #   - unique
+#             #   - not_null
+#             #
+#             # This is useful for enforcing:
+#             # "Every customer must have a unique, non-null ID."
+
+
+#             config:
+
+#               meta:
+#                 business_definition: "Unique customer identifier"
+#                 sensitive: false
+#               # Custom metadata for THIS COLUMN.
+#               #
+#               # Example:
+#               # meta:
+#               #   business_definition: "Unique customer identifier"
+#               #   sensitive: false
+
+
+#               tags:
+#                 - primary_key
+#                 - customer_id
+#               # Tags applied specifically to THIS COLUMN.
+#               #
+#               # Example:
+#               # tags: [primary_key, customer_id]
+
+
+#           - name: email
+
+#             description: "Customer email address."
+#             # Documentation for the column.
+
+
+#             quote: false
+#             # Don't quote the column name.
+
+
+#             data_tests:
+#               - not_null
+#             # Make sure email isn't NULL.
+
+
+#             config:
+
+#               meta:
+#                 pii: true
+#                 classification: confidential
+#               # Custom metadata identifying this column as PII.
+
+
+#               tags:
+#                 - pii
+#                 - sensitive
+#               # Tags identifying the column as sensitive.
+
+
+#           - name: created_at
+
+#             description: "Timestamp when the customer was created."
+
+#             quote: false
+
+#             data_tests:
+#               - not_null
+#             # Every customer should have a creation timestamp.
+
+
+#             config:
+
+#               meta:
+#                 business_definition: "Customer creation timestamp"
+
+#               tags:
+#                 - timestamp
+#                 - audit
+
+
+#           # Additional columns go here.
+
+
+#       # ==========================================================
+#       # ANOTHER SOURCE TABLE
+#       # ==========================================================
+
+#       - name: orders
+#         description: "Salesforce customer orders."
+
+#         identifier: Order
+
+#         data_tests:
+#           - not_null:
+#               column_name: id
+
+#         config:
+
+#           loaded_at_field: _fivetran_synced
+
+#           tags:
+#             - sales
+#             - orders
+
+#           meta:
+#             owner: sales-analytics
+
+#         columns:
+
+#           - name: id
+#             description: "Unique order identifier."
+
+#             data_tests:
+#               - unique
+#               - not_null
+
+#             config:
+#               tags:
+#                 - primary_key
+
+
+#           - name: customer_id
+#             description: "Customer who placed the order."
+
+#             data_tests:
+#               - not_null
+
+#             config:
+#               tags:
+#                 - foreign_key
+
+
+#   # ============================================================
+#   # ANOTHER SOURCE
+#   # ============================================================
+
+#   - name: stripe
+#     # Another logical source.
+#     #
+#     # SQL:
+#     # {{ source('stripe', 'payments') }}
+
+
+#     description: "Stripe payment data."
+
+#     database: raw
+
+#     schema: stripe
+
+#     loader: fivetran
+
+#     config:
+
+#       loaded_at_field: _fivetran_synced
+
+#       freshness:
+#         warn_after:
+#           count: 6
+#           period: hour
+
+#         error_after:
+#           count: 12
+#           period: hour
+
+#       tags:
+#         - finance
+#         - payments
+
+#       meta:
+#         owner: finance
+
+
+#     tables:
+
+#       - name: payments
+
+#         description: "Stripe payment transactions."
+
+#         columns:
+
+#           - name: id
+#             description: "Unique payment ID."
+
+#             data_tests:
+#               - unique
+#               - not_null
+
+#             config:
+#               tags:
+#                 - primary_key
+
+#           - name: amount
+#             description: "Payment amount in cents."
+
+#           - name: currency
+#             description: "Three-letter ISO currency code."
+
