@@ -10,15 +10,18 @@ sources:
     tables:
       - name: actor
         description: "Table containing actor information."
-        # columns:
-        #   - name: actor_id
-        #     description: "Unique identifier for the actor."
-        #   - name: first_name
-        #     description: "First name of the actor."
-        #   - name: last_name
-        #     description: "Last name of the actor."
-        #   - name: last_update
-        #     description: "Timestamp of the last update to the actor record."
+        columns:
+          - name: actor_id
+            description: "Unique identifier for the actor."
+            tests:
+              - unique
+              - not_null
+          - name: first_name
+            description: "First name of the actor."
+          - name: last_name
+            description: "Last name of the actor."
+          - name: last_update
+            description: "Timestamp of the last update to the actor record."
 
 
       - name: address
