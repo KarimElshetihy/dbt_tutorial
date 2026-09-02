@@ -2,3 +2,33 @@ version: 1
 
 sources:
   - name: kdrama
+
+models:
+  - name: kdrama_reviews
+    description: "K-Drama reviews dataset"
+    columns:
+      - name: drama_name
+        description: "Name of the K-Drama"
+      - name: screenwriter
+        description: "Screenwriter of the K-Drama"
+      - name: type
+        description: "Type of the K-Drama"
+        tests:
+          - not_null
+          - is_not_drama
+      - name: tot_eps
+        description: "Total number of episodes"
+      - name: duration
+        description: "Duration of the K-Drama"
+      - name: rank
+        description: "Rank of the K-Drama"
+      - name: story_score
+        description: "Story score of the K-Drama"
+      - name: acting_cast_score
+        description: "Acting and cast score of the K-Drama"
+      - name: music_score
+        description: "Music score of the K-Drama"
+      - name: rewatch_value_score
+        description: "Rewatch value score of the K-Drama"
+      - name: overall_score
+        description: "Overall score of the K-Drama"
