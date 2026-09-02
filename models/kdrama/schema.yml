@@ -8,27 +8,37 @@ models:
     description: "{{ doc('kdrama_reviews') }}"
     columns:
       - name: drama_name
-        description: "Name of the K-Drama"
+        description: "{{ doc('drama_name') }}"
+
       - name: screenwriter
-        description: "Screenwriter of the K-Drama"
+        description: "{{ doc('screenwriter') }}"
+
       - name: type
-        description: "Type of the K-Drama"
+        description: "{{ doc('type') }}"
         tests:
           - not_null
           - is_not_drama
+
       - name: tot_eps
-        description: "Total number of episodes"
+        description: "{{ doc('tot_eps') }}"
+
       - name: duration
-        description: "Duration of the K-Drama"
+        description: "{{ doc('duration') }}"
+
       - name: rank
-        description: "Rank of the K-Drama"
+        description: "{{ doc('rank') }}"
+
       - name: story_score
-        description: "Story score of the K-Drama"
+        description: "{{ doc('story_score') }}"
+
       - name: acting_cast_score
-        description: "Acting and cast score of the K-Drama"
+        description: "{{ doc('acting_cast_score') }}"
+
       - name: music_score
-        description: "Music score of the K-Drama"
+        description: "{{ doc('music_score') }}"
+
       - name: rewatch_value_score
-        description: "Rewatch value score of the K-Drama"
+        description: "{{ doc('rewatch_value_score') }}"
+        
       - name: overall_score
-        description: "Overall score of the K-Drama"
+        description: "{{ doc('overall_score') }}"

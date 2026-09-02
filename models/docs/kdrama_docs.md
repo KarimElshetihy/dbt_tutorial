@@ -53,3 +53,51 @@ Thank you in advance!
 
 
 {% enddocs %}
+
+{% docs drama_name %}
+The title of the Korean drama. o=
+{% enddocs %}
+
+{% docs screenwriter %}
+The screenwriter credited for the Korean drama.
+{% enddocs %}
+
+{% docs type %}
+The content type of the title, such as drama or movie.
+{% enddocs %}
+
+{% docs tot_eps %}
+The total number of episodes in the Korean drama.
+{% enddocs %}
+
+{% docs duration %}
+The runtime of each episode.
+{% enddocs %}
+
+{% docs rank %}
+The ranking of the Korean drama in the source dataset.
+{% enddocs %}
+
+{% docs story_score %}
+The review score for the drama's story.
+{% enddocs %}
+
+{% docs acting_cast_score %}
+The review score for the drama's acting and cast.
+{% enddocs %}
+
+{% docs music_score %}
+The review score for the drama's music.
+{% enddocs %}
+
+{% docs rewatch_value_score %}
+The review score for the drama's rewatch value.
+{% enddocs %}
+
+{% docs overall_score %}
+The overall review score for the drama.
+{% enddocs %}
+
+<!-- This can be referenced in many .yml files dependding on the project structure, so you only write it once and use it many times. -->
+
+
