@@ -5,6 +5,12 @@
 name: 'demo_dbt'
 version: '1.0.0'
 
+# This is an example variable. You can use variables to pass values into your
+# models and macros. For example, you could use a variable to define the
+# name of a table that you want to reference in multiple models.
+vars:
+  kdrama_type: 'action'
+
 # This setting configures which "profile" dbt uses for this project.
 profile: 'demo_dbt'
 

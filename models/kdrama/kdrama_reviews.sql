@@ -18,7 +18,11 @@ kdrama_reviews as (
         r.acting_cast_score,
         r.music_score,
         r.rewatch_value_score,
-        r.overall_score
+        r.overall_score,
+        case
+            when lower(k.type) = lower('{{ var("kdrama_type") }}') then 1
+            else 0
+        end as is_action
     from reviews as r inner join kdrama as k on r.title = k.drama_name
 )
 
