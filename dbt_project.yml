@@ -30,10 +30,10 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "dbt_packages"
 
 on-run-start:          # hooks to run at the start of dbt run
-  - "insert into db_demo.public.dbt_audits (audit_type) values ('run_start'); commit;"
+  - "{{ insert_audit('run_start') }}"
 
 on-run-end:            # hooks to run at the end of dbt run
-  - "insert into db_demo.public.dbt_audits (audit_type) values ('run_end'); commit;"
+  - "{{ insert_audit('run_end') }}"
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
@@ -43,9 +43,9 @@ on-run-end:            # hooks to run at the end of dbt run
 # files using the `{{ config(...) }}` macro.
 models:
   pre-hook: 
-    - "insert into db_demo.public.dbt_audits (audit_type) values ('model_pre_hook'); commit;"
+    - "{{ insert_audit('model_pre_hook') }}"
   post-hook:
-    - "insert into db_demo.public.dbt_audits (audit_type) values ('model_post_hook'); commit;"
+    - "{{ insert_audit('model_post_hook') }}"
   demo_dbt:
     # Config indicated by + and applies to all files under models/example/
     example:
