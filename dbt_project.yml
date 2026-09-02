@@ -29,6 +29,11 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
+on-run-start:          # hooks to run at the start of dbt run
+  - "insert into db_demo.public.dbt_audits (audit_type) values ('run_start'); commit;"
+
+on-run-end:            # hooks to run at the end of dbt run
+  - "insert into db_demo.public.dbt_audits (audit_type) values ('run_end'); commit;"
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
