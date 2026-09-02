@@ -8,6 +8,7 @@ version: '1.0.0'
 # This is an example variable. You can use variables to pass values into your
 # models and macros. For example, you could use a variable to define the
 # name of a table that you want to reference in multiple models.
+# replace default var value on runtime using dbt run --vars '{"kdrama_type": "action"}'
 vars:
   kdrama_type: 'drama'
 
