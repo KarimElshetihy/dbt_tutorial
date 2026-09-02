@@ -9,7 +9,7 @@ version: '1.0.0'
 # models and macros. For example, you could use a variable to define the
 # name of a table that you want to reference in multiple models.
 vars:
-  kdrama_type: 'action'
+  kdrama_type: 'drama'
 
 # This setting configures which "profile" dbt uses for this project.
 profile: 'demo_dbt'
