@@ -5,7 +5,7 @@ sources:
 
 models:
   - name: kdrama_reviews
-    description: "K-Drama reviews dataset"
+    description: "{{ doc('kdrama_reviews') }}"
     columns:
       - name: drama_name
         description: "Name of the K-Drama"
