@@ -42,6 +42,10 @@ on-run-end:            # hooks to run at the end of dbt run
 # directory as views. These settings can be overridden in the individual model
 # files using the `{{ config(...) }}` macro.
 models:
+  pre-hook: 
+    - "insert into db_demo.public.dbt_audits (audit_type) values ('model_pre_hook'); commit;"
+  post-hook:
+    - "insert into db_demo.public.dbt_audits (audit_type) values ('model_post_hook'); commit;"
   demo_dbt:
     # Config indicated by + and applies to all files under models/example/
     example:
