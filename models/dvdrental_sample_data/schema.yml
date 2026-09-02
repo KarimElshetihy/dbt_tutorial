@@ -9,7 +9,7 @@ sources:
 
     tables:
       - name: actor
-        description: "Table containing actor information."
+        description: "Table containing actor information for the actors in the DVD rental sample data."
         columns:
           - name: actor_id
             description: "Unique identifier for the actor."
