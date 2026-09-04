@@ -79,8 +79,9 @@ sources:
             count: 5
             period: minute
           error_after:
-            count: 30
+            count: 60
             period: minute
+          filter: "return_date IS NOT NULL"
         loaded_at_field: "last_update AT TIME ZONE 'Africa/Cairo'"
 
       - name: staff
