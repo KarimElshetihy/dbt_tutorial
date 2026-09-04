@@ -74,6 +74,14 @@ sources:
 
       - name: rental
         description: "Table containing rental information."
+        freshness:
+          warn_after:
+            count: 5
+            period: minute
+          error_after:
+            count: 30
+            period: minute
+        loaded_at_field: "last_update AT TIME ZONE 'Africa/Cairo'"
 
       - name: staff
         description: "Table containing staff information."
