@@ -28,6 +28,8 @@ snapshot-paths: ["snapshots"]
 clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
+  - "dbt_modules"
+  - "logs"
 
 on-run-start:          # hooks to run at the start of dbt run
   - "{{ insert_audit('run_start') }}"
