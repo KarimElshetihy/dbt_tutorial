@@ -58,3 +58,4 @@ models:
     dvdrental_sample_data:
       +materialized: view
       +schema: sch_demo_dvdrental 
+      +tags: ['dvdrental', 'sample_data']
