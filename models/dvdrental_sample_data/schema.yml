@@ -74,6 +74,11 @@ sources:
 
       - name: rental
         description: "Table containing rental information."
+        +queryTags: ['rental', 'dvdrental_sample_data']
+        +meta:
+          owner: "data-team"
+          domain: "rental"
+          criticality: "low"
         freshness:
           warn_after:
             count: 5
