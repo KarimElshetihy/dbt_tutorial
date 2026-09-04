@@ -203,5 +203,12 @@ Tests
 in dependency order
 ```
 
+dbt compile
+dbt ls --models state:modified --state .
+dbt run --models state:modified --state .
+dbt docs generate
+dbt docs serve --host 0.0.0.0 --port 8080
+
+
 For most daily work, `dbt build` is often the most useful command because it validates the full dependency chain instead of just building models.
 
