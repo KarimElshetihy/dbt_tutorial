@@ -16,6 +16,7 @@ sources:
             tests:
               - unique
               - not_null
+            tags: ['test-tag', 'actor_id']
           - name: first_name
             description: "First name of the actor."
           - name: last_name

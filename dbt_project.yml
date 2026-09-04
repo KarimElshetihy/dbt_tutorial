@@ -50,9 +50,12 @@ models:
     - "{{ insert_audit(invocation_id) }}"
   demo_dbt:
     # Config indicated by + and applies to all files under models/example/
+    tags: ['demo_dbt']
+
     example:
       +materialized: view
       +schema: sch_demo_example 
+      tags: ['example']
 
 
     dvdrental_sample_data:
